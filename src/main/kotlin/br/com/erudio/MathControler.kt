@@ -21,6 +21,50 @@ class MathControler {
         return convertToDouble(numberOne) + convertToDouble(numberTwo)
     }
 
+    @RequestMapping(value=["/subtraction/{numberOne}/{numberTwo}"])
+    fun subtraction(@PathVariable(value="numberOne") numberOne: String?,
+            @PathVariable(value="numberTwo") numberTwo: String?
+    ): Double {
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo))
+            throw UnsupportedMathOperationException("Por favor informe um numerico")
+        return convertToDouble(numberOne) - convertToDouble(numberTwo)
+    }
+
+    @RequestMapping(value=["/multiplication/{numberOne}/{numberTwo}"])
+    fun multiplication(@PathVariable(value="numberOne") numberOne: String?,
+                    @PathVariable(value="numberTwo") numberTwo: String?
+    ): Double {
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo))
+            throw UnsupportedMathOperationException("Por favor informe um numerico")
+        return convertToDouble(numberOne) * convertToDouble(numberTwo)
+    }
+
+    @RequestMapping(value=["/division/{numberOne}/{numberTwo}"])
+    fun division(@PathVariable(value="numberOne") numberOne: String?,
+                       @PathVariable(value="numberTwo") numberTwo: String?
+    ): Double {
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo))
+            throw UnsupportedMathOperationException("Por favor informe um numerico")
+        return convertToDouble(numberOne) / convertToDouble(numberTwo)
+    }
+
+    @RequestMapping(value=["/min/{numberOne}/{numberTwo}"])
+    fun min(@PathVariable(value="numberOne") numberOne: String?,
+            @PathVariable(value="numberTwo") numberTwo: String?
+    ): Double {
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo))
+            throw UnsupportedMathOperationException("Por favor informe um numerico")
+        return (convertToDouble(numberOne) + convertToDouble(numberTwo))/2
+    }
+
+    @RequestMapping(value=["/squareRoot/{number}"])
+    fun squareRoot(@PathVariable(value="number") number: String?,
+    ): Double {
+        if (!isNumeric(number))
+            throw UnsupportedMathOperationException("Por favor informe um numerico")
+        return Math.sqrt(convertToDouble(number))
+    }
+
     private fun convertToDouble(strNumber: String?): Double {
         if (strNumber.isNullOrBlank()) return 0.0
         val number = strNumber.replace(",".toRegex(),".")
