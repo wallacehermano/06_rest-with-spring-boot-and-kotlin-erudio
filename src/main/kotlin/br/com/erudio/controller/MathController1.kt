@@ -1,14 +1,13 @@
-package br.com.erudio
+package br.com.erudio.controller
 
-import br.com.erudio.exceptions.ExceptionResponse
 import br.com.erudio.exceptions.UnsupportedMathOperationException
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.atomic.AtomicLong
 
-@RestController
-class MathControler {
+//@RestController
+class MathController1 {
 
     val counter: AtomicLong = AtomicLong()
 
@@ -23,7 +22,7 @@ class MathControler {
 
     @RequestMapping(value=["/subtraction/{numberOne}/{numberTwo}"])
     fun subtraction(@PathVariable(value="numberOne") numberOne: String?,
-            @PathVariable(value="numberTwo") numberTwo: String?
+                    @PathVariable(value="numberTwo") numberTwo: String?
     ): Double {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo))
             throw UnsupportedMathOperationException("Por favor informe um numerico")
@@ -32,7 +31,7 @@ class MathControler {
 
     @RequestMapping(value=["/multiplication/{numberOne}/{numberTwo}"])
     fun multiplication(@PathVariable(value="numberOne") numberOne: String?,
-                    @PathVariable(value="numberTwo") numberTwo: String?
+                       @PathVariable(value="numberTwo") numberTwo: String?
     ): Double {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo))
             throw UnsupportedMathOperationException("Por favor informe um numerico")
@@ -41,7 +40,7 @@ class MathControler {
 
     @RequestMapping(value=["/division/{numberOne}/{numberTwo}"])
     fun division(@PathVariable(value="numberOne") numberOne: String?,
-                       @PathVariable(value="numberTwo") numberTwo: String?
+                 @PathVariable(value="numberTwo") numberTwo: String?
     ): Double {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo))
             throw UnsupportedMathOperationException("Por favor informe um numerico")
